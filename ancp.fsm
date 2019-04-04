@@ -1,0 +1,17 @@
+
+# Mandatory type definitions
+
+FSM_NAME   := ancp
+HDLR_RET   := void
+HDLR_ARGS  := int fd, unsigned char *msgin, ancp_state_t *state 
+
+# ANCP (GSMP) State table 
+
+             UNKNOWN       SYN            SYNACK           ACK          RSTACK
+
+START       start_syn       NULL          NULL             NULL         rstack
+SYNSENT     synsent_unk   synsent_syn     synsent_synack   synsent_ack  rstack
+SYNRCVD     synrcvd_unk   synrcvd_syn     synrcvd_synack   synrcvd_ack  rstack  
+ESTAB       NULL          estab_synacksyn estab_synacksyn  estab_ack    rstack
+
+#no action denoted as NULL

@@ -1,0 +1,23 @@
+
+Linux:
+
+Do not hardcode 'bond0', instead, get all the interfaces using the
+code from the sampel getallintfs.c , and then integrate it
+into getmac.c - so that it can work even if just eth0 is present
+
+TCP - read incoming message fully and then handover- IO diff queues?
+
+RSTACK message - proper building TODO
+
+discard message if it is for a unsupported capability && not in ESTAB
+        this will be in effect once we start supporting other mtypes 
+
+Logging - per type, file, stdout 
+
+
+
+
+Fri Jul 16 15:15:33 IST 2010
+ - If changed to a fork() model, 
+   add a signal handler for SIGCHLD and in handler, do a 
+   wait() to clear up zombies 

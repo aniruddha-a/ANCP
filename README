@@ -1,0 +1,68 @@
+
+An ANCP server client implementation on linux
+==================================================
+
+Written for fun and for understanding - is not a full blown
+implementation, provided as-is, no guarantees for scalability
+or reliability.
+
+Usage
+=======
+    Run server
+
+      $ ./server
+
+    Run server CLI
+
+      $ ./srvrcli
+      
+    Run client
+
+      $ ./client <server-ip|hostname>
+
+
+Code
+==========
+
+FSM generation script: fsmgen.pl
+   Reads fsm definition in a table format and creates state tables
+   ancp.fsm is the fsm we use, this will generate ancp_fsmtbl.h
+   (which is used from ancp_fsm.c)
+ 
+Logging: logg.c
+   Creates log file of the form DayDateTimeYr.<prog-name>.log
+   5 different log levels are defined and can be controlled 
+   from the CLI, by default the ERROR and INFO logs are turned
+   on at startup
+   
+Timer: timer.c
+   A simple interval list of timers, connection list will have 
+   a pointer to the timer node for O(1) deletion.
+
+Rest:
+
+ancp_client.c - The client program
+ancp_server.c - The server program
+ancp.c        - ANCP message build and decode routines
+ancp_fsm.c    - ANCP state machine implementation, ancp_fsm() is the driver
+getmac.c      - Routines to fetch MAC given interface name
+scli_hdlr.c   - Server CLI data handler
+tcp_readwr.c  - TCP read write routines (from Stevens)
+utils.c       - Miscellaneous functions
+
+srvrcli_codes.h- CLI codes for all server CLIs
+bitset.h       - Byte setting in stream
+
+cli/
+ srv_hdlr.c - CLI data handler
+ srvrcli.c  - Main CLI handler
+ strie.c    - Internal Trie implementation  
+ termio.h   - Unbuffered terminal IO
+
+References
+==========
+
+RFC3292 - General Switch Management Protocol (GSMP) V3
+          $11 - Adjacency State machine
+          
+draft-ietf-ancp-protocol-08 - ANCP protocol

@@ -1,0 +1,19 @@
+void sh_ancp_stats();
+void sh_ancp_summ();
+void sh_ancp_nei();
+void quit();
+void sh_adj_timer();
+void sh_ancp_sess();
+void set_adj_timer();
+
+void set_deb_err();
+void set_deb_pack();
+void set_deb_fsm();
+void set_deb_info();
+void set_deb_det();
+void unset_deb_err();
+void unset_deb_pack();
+void unset_deb_fsm();
+void unset_deb_info();
+void unset_deb_det();
+void sh_debugs();
